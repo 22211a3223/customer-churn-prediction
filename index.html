@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Prediction</title>
+</head>
+<body>
+    <h1>Customer Churn Prediction</h1>
+    <form method="POST">
+        Age: <input type="number" name="age" required><br>
+        Tenure: <input type="number" name="tenure" required><br>
+        Plan Type: <input type="text" name="plan_type" required><br>
+        Feedback Text: <input type="text" name="feedback_text" required><br>
+        Sentiment: <input type="number" step="any" name="sentiment" required><br>
+        Voice Emotion: <input type="text" name="voice_emotion" required><br>
+        CLV: <input type="number" step="any" name="clv" required><br>
+        Retention Strategy: <input type="text" name="retention_strategy" required><br>
+        <input type="submit" value="Predict Churn">
+    </form>
+
+    {% if prediction %}
+        {% if prediction.error %}
+            <p style="color:red;">Error: {{ prediction.error }}</p>
+        {% else %}
+            <p>Churn Probability: {{ prediction.churn_prob }}%</p>
+            <p>Will Churn: {{ prediction.churn }}</p>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
